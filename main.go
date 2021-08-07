@@ -3,6 +3,7 @@ package main
 import (
 	//"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"github.com/thinkerou/favicon"
 	"github.com/gjlee0802/my_introduce/dataService/mysql"
 	"github.com/gjlee0802/my_introduce/usecase/registration"
 	"github.com/gjlee0802/my_introduce/rest/handler"
@@ -23,6 +24,7 @@ func main(){
 
 	// Router
 	r := gin.Default()
+	r.Use(favicon.New("view/assets/img/favicon.ico"))
 	//r.LoadHTMLGlob("view/*")
 	r.LoadHTMLFiles("view/index.html")
 	r.Static("/css", "./view/css")
