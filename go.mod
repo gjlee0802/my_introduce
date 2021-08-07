@@ -1,4 +1,4 @@
-module my_introduce
+module github.com/gjlee0802/my_introduce
 
 go 1.16
 
