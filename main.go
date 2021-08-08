@@ -3,10 +3,12 @@ package main
 import (
 	//"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
-	"github.com/thinkerou/favicon"
 	"github.com/gjlee0802/my_introduce/dataService/mysql"
-	"github.com/gjlee0802/my_introduce/usecase/registration"
 	"github.com/gjlee0802/my_introduce/rest/handler"
+	"github.com/gjlee0802/my_introduce/usecase/registration"
+	//"github.com/gjlee0802/my_introduce/rest/middleware"
+	"github.com/thinkerou/favicon"
+
 	//"github.com/gjlee0802/my_introduce/rest/middleware"
 )
 
@@ -30,20 +32,20 @@ func main(){
 	r.Static("/css", "./view/css")
 	r.Static("/assets", "./view/assets")
 	r.Static("/js", "./view/js")
-	//r.GET("/", Need Handler Func here) // should call handler.showIndexPage
 
-	//
+	//r.Use(middleware.SetUserStatus())
+
 	r.GET("/", h.ShowIndexPage)
- 	/*
+
 	user := r.Group("/u")
 	{
-		user.GET("/login", notLoggedIn, h.ShowLoginPage)
-		user.POST("/login", notLoggedIn, h.Login)
-		user.GET("/logout", loggedIn, h.Logout)
-		user.GET("/register", notLoggedIn, h.ShowRegistrationPage)
-		user.POST("/register", notLoggedIn, h.Register)
+		//user.GET("/login", notLoggedIn, h.ShowLoginPage)
+		//user.POST("/login", notLoggedIn, h.Login)
+		user.POST("/login", h.Login)
+		//user.GET("/logout", loggedIn, h.Logout)
+		//user.GET("/register", notLoggedIn, h.ShowRegistrationPage)
+		user.POST("/register", h.Register)
 	}
- 	*/
 
 	r.Run(":8080")
 }
